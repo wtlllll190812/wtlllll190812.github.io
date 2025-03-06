@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on wtlllll的博客</title>
-        <link>https://wtlllll190812.github.io/post/</link>
-        <description>Recent content in Posts on wtlllll的博客</description>
+        <title>Unity on wtlllll的博客</title>
+        <link>https://wtlllll190812.github.io/tags/unity/</link>
+        <description>Recent content in Unity on wtlllll的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>wtlllll</copyright>
-        <lastBuildDate>Thu, 06 Mar 2025 20:46:08 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 06 Mar 2025 20:46:08 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>概述</title>
         <link>https://wtlllll190812.github.io/p/%E6%A6%82%E8%BF%B0/</link>
         <pubDate>Thu, 06 Mar 2025 20:42:31 +0800</pubDate>
