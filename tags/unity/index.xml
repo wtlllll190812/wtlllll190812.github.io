@@ -7,13 +7,62 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>wtlllll</copyright>
-        <lastBuildDate>Thu, 06 Mar 2025 20:46:08 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>概述</title>
-        <link>https://wtlllll190812.github.io/p/%E6%A6%82%E8%BF%B0/</link>
+        <lastBuildDate>Sat, 08 Mar 2025 00:55:30 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Unity DOTS Entities包文档翻译及学习笔记（一）概述</title>
+        <link>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/</link>
         <pubDate>Thu, 06 Mar 2025 20:42:31 +0800</pubDate>
         
-        <guid>https://wtlllll190812.github.io/p/%E6%A6%82%E8%BF%B0/</guid>
-        <description>&lt;img src="https://wtlllll190812.github.io/img/DOTS.png" alt="Featured image of post 概述" /&gt;</description>
+        <guid>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/</guid>
+        <description>&lt;img src="https://wtlllll190812.github.io/img/DOTS.png" alt="Featured image of post Unity DOTS Entities包文档翻译及学习笔记（一）概述" /&gt;&lt;h1 id=&#34;概述&#34;&gt;概述
+&lt;/h1&gt;&lt;p&gt;Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现
+以下是unity提供的学习资料
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/Unity-Technologies/EntityComponentSystemSamples&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DOTS Guide and Samples&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;安装&#34;&gt;安装
+&lt;/h1&gt;&lt;p&gt;要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本
+打开包管理窗口，这里可以使用两种方式安装：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用名称安装（com.unity.entities）&lt;/li&gt;
+&lt;li&gt;使用git链接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;ecs-工作流&#34;&gt;ECS 工作流
+&lt;/h1&gt;&lt;p&gt;使用面对数据的ECS工作流开发游戏的方式与之前面向对象的开发方式十分不同，无论是开发原则，还是功能的实现方式上。所以在真正开始ECS开发之前，有必要理解一下ECS工作流。&lt;/p&gt;
+&lt;h2 id=&#34;创建子场景subscene&#34;&gt;创建子场景（subscene）
+&lt;/h2&gt;&lt;p&gt;ECS使用subscene来容纳游戏的内容，你可以将GameObject和MonoBehaviour组件添加到子场景，然后烘焙器（baker）会将你的 GameObject 对象的 Monobehaviour 对象转换为实体和 ECS 组件。&lt;/p&gt;
+&lt;h2 id=&#34;创建ecs组件component&#34;&gt;创建ECS组件（component）
+&lt;/h2&gt;&lt;p&gt;组件存储了引用的数据，而系统则通过按照逻辑读写ECS组件数据来执行游戏行为。ECS工作流是面向数据的，所以最好是在开始创建实体以及系统的逻辑之前就开始规划你的数据，并为之创造ECS组件。Entiites提供了多种组件类型来满足不同目标，这些会在下文中提到。&lt;/p&gt;
+&lt;h2 id=&#34;创建实体entity&#34;&gt;创建实体（entity）
+&lt;/h2&gt;&lt;p&gt;实体代表了游戏中存在的不同事物，要在编辑器中创建实体，你添加一个GameObject到子场景，它会被烘焙程序转换成实体。&lt;/p&gt;
+&lt;p&gt;或者，你也可以创建baker将ECS组件附加到实体上，当你创建baker时，你需要为其指定一个MonoBehaviour组件，然后根据MonoBehaviour组件的数据创建ECS组件并附加到Entities上。&lt;/p&gt;
+&lt;p&gt;这个工作流被称为“authoring”组件&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意，当脚本用作authoring时，建议在类名的后方加上“Authoring”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;当然，你也可以在运行时创建实体，这在后文中会讲到&lt;/p&gt;
+&lt;h2 id=&#34;创建系统system&#34;&gt;创建系统（system）
+&lt;/h2&gt;&lt;p&gt;为此系统可以查询以及转换ECS组件数据，创建和销毁实体，或者添加以及移除附加在实体上的组件，它定义了游戏的行为
+默认情况下，当你创建系统时，Unity会将其初始化并添加到默认的World中。
+对于不同的目标，unity提供了不同种类的系统，在下文中会提到。&lt;/p&gt;
+&lt;h2 id=&#34;优化系统&#34;&gt;优化系统
+&lt;/h2&gt;&lt;p&gt;默认情况下，你在system中编写的代码会同步运行在主线程中，如果系统涉及到大量实体的数据同时可以在多线程下受益，那么最好创建Burst兼容的job，然后在并行执行job，Burst会将你的c#代码编译成高性能的原生Cpu代码，而job使你可以将任务分发到多线程，从多处理器中受益。&lt;/p&gt;
+&lt;p&gt;如果一个system并不执行太多工作，比如仅仅处理少量实体的数据，那么并行任务带来的开销将会超过从多线程中获得的收益，要确认你的job是不是这种情况，可以使用cpu profiler来测试多线程以及单线程下unity花了多长时间在你的job上。
+如果并行的开销让unity花费了更长的时间，尝试以下选项来优化job:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在主线程上运行job&lt;/li&gt;
+&lt;li&gt;如果系统是非托管的 ISystem 请使用SystemApi.Query和普通的foreach。你可以在使用了查询的方法上使用BurstCompile属性来让burst优化性能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- ECS架构即实体组件架构 --&gt;
+&lt;!-- # Entities 1.0之后的新功能
+(仅为学习Entities包可以跳过这部分内容，可能涉及到一些陌生的名词，但后文会讲到)
+## 添加的功能
+- **Aspects**,通过将不同的组件聚合到一个 c# 结构体中，你可以方便地组织组件（component）代码，同时简化系统的查询
+- **Baking**,使用 Baking 替换了先前的GameObject与实体的转换管线
+- **Enableable components**, 可以用来在语义上添加或者删除实体的组件，同时免于更改其原型，否则会避免结构性变化（structural changes）,进而影响性能
+- **Journaling editor window**, 提供了一个与其他Entities窗口相连通的编辑器内建日志记录视图
+- **新的 authoring-runtime 工作流**,影响了 Entities hierarchy 窗口和 Inspector 窗口,让你可以切换entities信息的 authoring 显示模式和 runtime 显示模式，同时无需改变选择上下文
+- **Query\&lt;T\&gt;**，让你可以在继承 ISystem 的系统中使用惯用的foreach表达式来遍历实体。
+## 更新的功能
+- Transforms  --&gt;
+</description>
         </item>
         
     </channel>

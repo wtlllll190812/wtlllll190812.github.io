@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
-<title>概述</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="概述 Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现 以下是unity提供的学习资料 DOTS Guide and Samples\n安装 要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本 打开包管理窗口，这里可以使用两种方式安装：\n">
+<title>Unity DOTS Entities包文档翻译及学习笔记（一）概述</title>
 
-<link rel='canonical' href='https://wtlllll190812.github.io/p/%E6%A6%82%E8%BF%B0/'>
+<link rel='canonical' href='https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/'>
 
-<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="概述">
-<meta property='og:description' content="">
-<meta property='og:url' content='https://wtlllll190812.github.io/p/%E6%A6%82%E8%BF%B0/'>
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="Unity DOTS Entities包文档翻译及学习笔记（一）概述">
+<meta property='og:description' content="概述 Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现 以下是unity提供的学习资料 DOTS Guide and Samples\n安装 要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本 打开包管理窗口，这里可以使用两种方式安装：\n">
+<meta property='og:url' content='https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/'>
 <meta property='og:site_name' content='wtlllll的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='c#' /><meta property='article:tag' content='unity' /><meta property='article:tag' content='DOTS' /><meta property='article:published_time' content='2025-03-06T20:42:31&#43;08:00'/><meta property='article:modified_time' content='2025-03-06T20:46:08&#43;08:00'/><meta property='og:image' content='https://wtlllll190812.github.io/img/DOTS.png' />
-<meta name="twitter:title" content="概述">
-<meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='c#' /><meta property='article:tag' content='unity' /><meta property='article:tag' content='DOTS' /><meta property='article:published_time' content='2025-03-06T20:42:31&#43;08:00'/><meta property='article:modified_time' content='2025-03-08T00:55:30&#43;08:00'/><meta property='og:image' content='https://wtlllll190812.github.io/img/DOTS.png' />
+<meta name="twitter:title" content="Unity DOTS Entities包文档翻译及学习笔记（一）概述">
+<meta name="twitter:description" content="概述 Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现 以下是unity提供的学习资料 DOTS Guide and Samples\n安装 要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本 打开包管理窗口，这里可以使用两种方式安装：\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://wtlllll190812.github.io/img/DOTS.png' />
     </head>
     <body class="
@@ -238,15 +238,50 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#创建子场景subscene">创建子场景（subscene）</a></li>
+    <li><a href="#创建ecs组件component">创建ECS组件（component）</a></li>
+    <li><a href="#创建实体entity">创建实体（entity）</a></li>
+    <li><a href="#创建系统system">创建系统（system）</a></li>
+    <li><a href="#优化系统">优化系统</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/%E6%A6%82%E8%BF%B0/">
+            <a href="/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/">
                 
-                    <img src="/img/DOTS.png" loading="lazy" alt="Featured image of post 概述" />
+                    <img src="/img/DOTS.png" loading="lazy" alt="Featured image of post Unity DOTS Entities包文档翻译及学习笔记（一）概述" />
                 
             </a>
         </div>
@@ -260,12 +295,20 @@
                 文档翻译
             </a>
         
+            <a href="/categories/unity/" >
+                Unity
+            </a>
+        
+            <a href="/categories/dots/" >
+                DOTS
+            </a>
+        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E6%A6%82%E8%BF%B0/">概述</a>
+            <a href="/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/">Unity DOTS Entities包文档翻译及学习笔记（一）概述</a>
         </h2>
     
         
@@ -302,7 +345,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -317,7 +360,56 @@
     <section class="article-content">
     
     
-    
+    <h1 id="概述">概述
+</h1><p>Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现
+以下是unity提供的学习资料
+<a class="link" href="https://github.com/Unity-Technologies/EntityComponentSystemSamples"  target="_blank" rel="noopener"
+    >DOTS Guide and Samples</a></p>
+<h1 id="安装">安装
+</h1><p>要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本
+打开包管理窗口，这里可以使用两种方式安装：</p>
+<ol>
+<li>使用名称安装（com.unity.entities）</li>
+<li>使用git链接</li>
+</ol>
+<h1 id="ecs-工作流">ECS 工作流
+</h1><p>使用面对数据的ECS工作流开发游戏的方式与之前面向对象的开发方式十分不同，无论是开发原则，还是功能的实现方式上。所以在真正开始ECS开发之前，有必要理解一下ECS工作流。</p>
+<h2 id="创建子场景subscene">创建子场景（subscene）
+</h2><p>ECS使用subscene来容纳游戏的内容，你可以将GameObject和MonoBehaviour组件添加到子场景，然后烘焙器（baker）会将你的 GameObject 对象的 Monobehaviour 对象转换为实体和 ECS 组件。</p>
+<h2 id="创建ecs组件component">创建ECS组件（component）
+</h2><p>组件存储了引用的数据，而系统则通过按照逻辑读写ECS组件数据来执行游戏行为。ECS工作流是面向数据的，所以最好是在开始创建实体以及系统的逻辑之前就开始规划你的数据，并为之创造ECS组件。Entiites提供了多种组件类型来满足不同目标，这些会在下文中提到。</p>
+<h2 id="创建实体entity">创建实体（entity）
+</h2><p>实体代表了游戏中存在的不同事物，要在编辑器中创建实体，你添加一个GameObject到子场景，它会被烘焙程序转换成实体。</p>
+<p>或者，你也可以创建baker将ECS组件附加到实体上，当你创建baker时，你需要为其指定一个MonoBehaviour组件，然后根据MonoBehaviour组件的数据创建ECS组件并附加到Entities上。</p>
+<p>这个工作流被称为“authoring”组件</p>
+<blockquote>
+<p>注意，当脚本用作authoring时，建议在类名的后方加上“Authoring”</p></blockquote>
+<p>当然，你也可以在运行时创建实体，这在后文中会讲到</p>
+<h2 id="创建系统system">创建系统（system）
+</h2><p>为此系统可以查询以及转换ECS组件数据，创建和销毁实体，或者添加以及移除附加在实体上的组件，它定义了游戏的行为
+默认情况下，当你创建系统时，Unity会将其初始化并添加到默认的World中。
+对于不同的目标，unity提供了不同种类的系统，在下文中会提到。</p>
+<h2 id="优化系统">优化系统
+</h2><p>默认情况下，你在system中编写的代码会同步运行在主线程中，如果系统涉及到大量实体的数据同时可以在多线程下受益，那么最好创建Burst兼容的job，然后在并行执行job，Burst会将你的c#代码编译成高性能的原生Cpu代码，而job使你可以将任务分发到多线程，从多处理器中受益。</p>
+<p>如果一个system并不执行太多工作，比如仅仅处理少量实体的数据，那么并行任务带来的开销将会超过从多线程中获得的收益，要确认你的job是不是这种情况，可以使用cpu profiler来测试多线程以及单线程下unity花了多长时间在你的job上。
+如果并行的开销让unity花费了更长的时间，尝试以下选项来优化job:</p>
+<ul>
+<li>在主线程上运行job</li>
+<li>如果系统是非托管的 ISystem 请使用SystemApi.Query和普通的foreach。你可以在使用了查询的方法上使用BurstCompile属性来让burst优化性能</li>
+</ul>
+<!-- ECS架构即实体组件架构 -->
+<!-- # Entities 1.0之后的新功能
+(仅为学习Entities包可以跳过这部分内容，可能涉及到一些陌生的名词，但后文会讲到)
+## 添加的功能
+- **Aspects**,通过将不同的组件聚合到一个 c# 结构体中，你可以方便地组织组件（component）代码，同时简化系统的查询
+- **Baking**,使用 Baking 替换了先前的GameObject与实体的转换管线
+- **Enableable components**, 可以用来在语义上添加或者删除实体的组件，同时免于更改其原型，否则会避免结构性变化（structural changes）,进而影响性能
+- **Journaling editor window**, 提供了一个与其他Entities窗口相连通的编辑器内建日志记录视图
+- **新的 authoring-runtime 工作流**,影响了 Entities hierarchy 窗口和 Inspector 窗口,让你可以切换entities信息的 authoring 显示模式和 runtime 显示模式，同时无需改变选择上下文
+- **Query\<T\>**，让你可以在继承 ISystem 的系统中使用惯用的foreach表达式来遍历实体。
+## 更新的功能
+- Transforms  -->
+
 </section>
 
 
@@ -356,7 +448,7 @@
 
 
         <span>
-            最后更新于 Mar 06, 2025 20:46 &#43;0800
+            最后更新于 Mar 08, 2025 00:55 &#43;0800
         </span>
     </section></footer>
 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>wtlllll的博客</title>
-        <link>https://wtlllll190812.github.io/</link>
-        <description>Recent content on wtlllll的博客</description>
+        <title>DOTS on wtlllll的博客</title>
+        <link>https://wtlllll190812.github.io/categories/dots/</link>
+        <description>Recent content in DOTS on wtlllll的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>wtlllll</copyright><atom:link href="https://wtlllll190812.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>wtlllll</copyright>
+        <lastBuildDate>Sat, 08 Mar 2025 00:55:30 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/categories/dots/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Unity DOTS Entities包文档翻译及学习笔记（一）概述</title>
         <link>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/</link>
         <pubDate>Thu, 06 Mar 2025 20:42:31 +0800</pubDate>
@@ -62,54 +63,6 @@
 ## 更新的功能
 - Transforms  --&gt;
 </description>
-        </item>
-        <item>
-        <title>Archives</title>
-        <link>https://wtlllll190812.github.io/archives/</link>
-        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://wtlllll190812.github.io/archives/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>About</title>
-        <link>https://wtlllll190812.github.io/about/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wtlllll190812.github.io/about/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>Links</title>
-        <link>https://wtlllll190812.github.io/links/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wtlllll190812.github.io/links/</guid>
-        <description>&lt;!-- To use this feature, add `links` section to frontmatter.
-
-This page&#39;s frontmatter:
-
-```yaml
-links:
-  - title: GitHub
-    description: GitHub is the world&#39;s largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-```
-
-`image` field accepts both local and external images. --&gt;</description>
-        </item>
-        <item>
-        <title>Search</title>
-        <link>https://wtlllll190812.github.io/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://wtlllll190812.github.io/search/</guid>
-        <description></description>
         </item>
         
     </channel>
