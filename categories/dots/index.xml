@@ -7,49 +7,237 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>wtlllll</copyright>
-        <lastBuildDate>Sat, 08 Mar 2025 00:55:30 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/categories/dots/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 23 Mar 2025 18:54:49 +0800</lastBuildDate><atom:link href="https://wtlllll190812.github.io/categories/dots/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Unity DOTS Entities包文档翻译及学习笔记（二）常见概念解释</title>
+        <link>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A/</link>
+        <pubDate>Sat, 08 Mar 2025 14:36:21 +0800</pubDate>
+        
+        <guid>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A/</guid>
+        <description>&lt;img src="https://wtlllll190812.github.io/img/DOTS.png" alt="Featured image of post Unity DOTS Entities包文档翻译及学习笔记（二）常见概念解释" /&gt;&lt;h2 id=&#34;ecs介绍&#34;&gt;ECS介绍
+&lt;/h2&gt;&lt;p&gt;Entities包使用ECS架构组织代码和数据，实体是一个独一无二的标识符，功能上类似于一个轻量级的GameObject代替。实体表现为一个与组件相关联的ID,组件中包含了与实体相关的数据。&lt;/p&gt;
+&lt;p&gt;与GamesObjects不同，entities不包含代码，而是你所创建系统处理的最小单位&lt;/p&gt;
+&lt;p&gt;下图描述了实体，组件和系统如何共同工作&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wtlllll190812.github.io/img/ECS.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;unity ECS 系统框图&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;图中系统读取了速度和方向组件，将其相乘然后更新相关的坐标组件&lt;/p&gt;
+&lt;p&gt;实体A和B有渲染组件，但实体C却没有，这并不影响系统的行为，系统不需要知道渲染组件&lt;/p&gt;
+&lt;p&gt;你可以创建一个需求渲染组件的系统，这样系统将会忽略实体C,你也可以创建一个排除了渲染组件的系统，这样实体A和B将会被忽略&lt;/p&gt;
+&lt;p&gt;图中也体现出了原型（archetype）的概念，原型就是指独一无二的组件组合&lt;/p&gt;
+&lt;h2 id=&#34;实体&#34;&gt;实体
+&lt;/h2&gt;&lt;p&gt;实体代表分散在你程序中哪些拥有自己数据的东西，类似角色，特效，UI，或者一个更加抽象的东西，类似网络传输。&lt;/p&gt;
+&lt;p&gt;实体类似于非托管的轻量级GameObject，代表了程序中一些特定的元素，但是实体表现为一个与不同组件数据相关联的ID,不包含任何代码或者作为关联组件的容器。&lt;/p&gt;
+&lt;p&gt;实体的集合存储在世界中（World）,世界的实体管理器（EntityManager）管理世界中的所有实体。&lt;/p&gt;
+&lt;h3 id=&#34;方法&#34;&gt;方法
+&lt;/h3&gt;&lt;p&gt;实体管理器包含了一些方法，这些方法可以用来创建删除或者修改世界中的实体，下面列出了一些常见的方法：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;方法&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CreateEntity&lt;/td&gt;
+          &lt;td&gt;创建一个新的实体&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Instantiate&lt;/td&gt;
+          &lt;td&gt;复制一个已存在的实体并根据复制，创建一个新的实体&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DestroyEntity&lt;/td&gt;
+          &lt;td&gt;销毁存在的实体&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AddComponent&lt;/td&gt;
+          &lt;td&gt;向已经存在的实体添加组件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RemoveComponent&lt;/td&gt;
+          &lt;td&gt;移除已存在实体的组件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GetComponent&lt;/td&gt;
+          &lt;td&gt;获取组件的数据&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SetComponnet&lt;/td&gt;
+          &lt;td&gt;覆写组件数据的值&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意，创建或者销毁实体会导致结构变更（structural change）,这会影响游戏性能，这在结构变更部分会有更多介绍&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;实体没有类型，但你可以根据其关联的组件分类实体，试题管理器会持续追踪现存实体的每种独特组件组合（原型）。&lt;/p&gt;
+&lt;h2 id=&#34;组件&#34;&gt;组件
+&lt;/h2&gt;&lt;p&gt;在ECS架构中，组件包含了系统所要读写的数据&lt;/p&gt;
+&lt;p&gt;Unity 使用没有方法的 IComponent 接口用来将一个结构体标识为组件类型，组件类型只能包含非托管类型的数据。但如果你想创建一个托管的组件，你可以将其定义为类。组件的定义中可以包含方法，但最好保持为纯数据，&lt;/p&gt;
+&lt;p&gt;独一无二的组件组合称为原型（archetype）,ECS架构通过16KiB大小的内存块来通过原型存储数据，这些内存块称为“chunk”&lt;/p&gt;
+&lt;h3 id=&#34;组件的类型&#34;&gt;组件的类型
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;组件类型&lt;/th&gt;
+          &lt;th&gt;原名&lt;/th&gt;
+          &lt;th&gt;介绍&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;非托管组件&lt;/td&gt;
+          &lt;td&gt;Unmanaged components&lt;/td&gt;
+          &lt;td&gt;最常见的组件类型，只能存储特定类型的数据成员。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;托管组件&lt;/td&gt;
+          &lt;td&gt;Managed Components&lt;/td&gt;
+          &lt;td&gt;一种托管的组件类型，可以存储任意类型的数据成员。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;共享组件&lt;/td&gt;
+          &lt;td&gt;Shared components&lt;/td&gt;
+          &lt;td&gt;根据实体的共享组件值将其分组到不同的块中。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;清理组件&lt;/td&gt;
+          &lt;td&gt;Cleanup components&lt;/td&gt;
+          &lt;td&gt;当销毁一个包含清理组件的实体时，Unity 会移除该实体上所有非清理组件。这在标记需要在销毁时被清除的组件时非常有用。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;标签组件&lt;/td&gt;
+          &lt;td&gt;Tag components&lt;/td&gt;
+          &lt;td&gt;一种非托管的组件，不存储任何数据，可以在查询中用来筛选实体。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;缓存组件&lt;/td&gt;
+          &lt;td&gt;Buffer components&lt;/td&gt;
+          &lt;td&gt;类似于可动态调整大小的数组。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;块组件&lt;/td&gt;
+          &lt;td&gt;Chunk components&lt;/td&gt;
+          &lt;td&gt;存储与整个块相关联的数据，而不是单个实体。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;可使能组件&lt;/td&gt;
+          &lt;td&gt;Enableable components&lt;/td&gt;
+          &lt;td&gt;一种可以在运行时启用或禁用的组件，且不会导致昂贵的结构变更。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;单例组件&lt;/td&gt;
+          &lt;td&gt;Singleton components&lt;/td&gt;
+          &lt;td&gt;在某个世界中唯一实例的组件。&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;系统&#34;&gt;系统
+&lt;/h2&gt;&lt;p&gt;系统提供了将组件数据从上一个状态转换到下一个状态的逻辑，例如，一个系统根据所有移动中的实体的速度与距离上次更新经过的时间来更新位置。&lt;/p&gt;
+&lt;p&gt;系统每帧在主线程上运行一次，它被组织成系统组（System group）的层级结构，这样你就可以控制系统的执行次序&lt;/p&gt;
+&lt;p&gt;你既可以创建非托管的系统，也可以创建非托管的系统。
+要创建托管的系统，你需要定义一个继承自“SystemBase”的类。
+要创建非托管的系统，你需要定义一个继承自ISystem的结构体&lt;/p&gt;
+&lt;p&gt;无论是ISystem还是SystemBase，你都有三个方法可以重写，分别是：OnUpdate,OnCreate以及OnDestory,系统的OnUpadte方法每帧执行一次&lt;/p&gt;
+&lt;p&gt;一个系统只能在一个世界中处理实体，所以系统会被关联到某个特定的系统，你可以使用World属性来返回系统所属的世界。&lt;/p&gt;
+&lt;p&gt;默认地，一个自动的引导程序会创建每一个系统和系统组的实例。引导程序会创建一个默认世界，包含以下三个系统组：InitializationSystemGroup, SimulationSystemGroup, 和 PresentationSystemGroup。&lt;/p&gt;
+&lt;p&gt;用户创建的系统会默认添加到SimulationSystemGroup中，你可以使用 [UpdateInGroup] 属性来指定所在的系统组&lt;/p&gt;
+&lt;p&gt;要禁止自动的引导程序，你可以使用以下宏定义&lt;code&gt;#UNITY_DISABLE_AUTOMATIC_SYSTEM_BOOTSTRAP&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;系统类型&#34;&gt;系统类型
+&lt;/h3&gt;&lt;p&gt;以下列出了你可以使用的系统类型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SystemBase：托管系统的积累&lt;/li&gt;
+&lt;li&gt;ISystem：非托管系统的接口&lt;/li&gt;
+&lt;li&gt;EntityCommandBufferSystem：为其他系统提供实体命令缓存实例，这可以将结构变更聚集在一起提升游戏性能&lt;/li&gt;
+&lt;li&gt;ComponentSystemGroup：用于定义系统组，为系统提供嵌套以及定义更新顺序的功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;系统组&#34;&gt;系统组
+&lt;/h3&gt;&lt;p&gt;系统组可以将系统或者其他系统组作为子系统，系统组有一个可以重写的Update方法，基类方法会按照排好的顺序更新子系统&lt;/p&gt;
+&lt;h3 id=&#34;监视系统&#34;&gt;监视系统
+&lt;/h3&gt;&lt;p&gt;可以使用System窗口来观察每个世界中系统的更新顺序，以及系统整体的层级结构&lt;/p&gt;
+&lt;h2 id=&#34;世界world&#34;&gt;世界（World）
+&lt;/h2&gt;&lt;p&gt;世界就是实体的集合，实体的ID在所在的世界是独一无二的。世界中有一个 EntityManager 结构体用来创建删除以及修改实体。&lt;/p&gt;
+&lt;p&gt;世界拥有一组系统，这些系统通常只会访问同一世界的实体。
+同一世界中有相同组件类型组合的实体被一起存储在原型中，原型决定了程序中的组件在内存中如何组织。&lt;/p&gt;
+&lt;h3 id=&#34;初始化&#34;&gt;初始化
+&lt;/h3&gt;&lt;p&gt;磨人来说，当你进入Play模式后，unity会创建一个World实例，并将每个系统添加到默认的世界中。&lt;/p&gt;
+&lt;p&gt;如果你倾向于手动将系统添加到默认的世界，你可以创建一个实现了&lt;code&gt;IcustomBootstrap&lt;/code&gt;的类。&lt;/p&gt;
+&lt;p&gt;如果你想完整地手动管理引导程序，可以使用这些宏定义禁用默认世界创建：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;#UNITY_DISABLE_AUTOMATIC_SYSTEM_BOOTSTRAP_RUNTIME_WORLD&lt;/code&gt;,关闭默认运行时World的生成&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#UNITY_DISABLE_AUTOMATIC_SYSTEM_BOOTSTRAP_EDITOR_WORLD&lt;/code&gt;,关闭默认编辑器World的生成&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#UNITY_DISABLE_AUTOMATIC_SYSTEM_BOOTSTRAP&lt;/code&gt;，关闭所有默认世界的生成（以上两者）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;现在你的代码需要负责创建世界和系统，并将世界的更新插入到Unity可编程的PlayerLoop中。&lt;a class=&#34;link&#34; href=&#34;https://docs.unity3d.com/2022.3/Documentation/ScriptReference/LowLevel.PlayerLoop.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PlayerLoop的更多信息&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;原型&#34;&gt;原型
+&lt;/h2&gt;&lt;p&gt;原型是一种独一无二的标识符，用于标识世界中所有具有相同组件组合的实体。举个例子，在下图中，所有只具有 speed, Direction,position 和 renderer 的实体共享一个原型X;所有只拥有 speed , direction 和 Position 的组件共享一个原型Y
+&lt;img src=&#34;https://wtlllll190812.github.io/img/entities-concepts.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;当你在一个实体上添加或者删除某个组件时，该世界的实体管理器将会把该实体移动到对应的原型中，例如，当一个实体有着 Speed, Direction 和 Position 组件，而你移除了其中的 Speed 组件，实体管理器就会将该实体移动到只有 Direction和 Position的原型中，如果没有这样的原型，实体管理器就会创建一个&lt;/p&gt;
+&lt;p&gt;基于原型来组织实体意味着根据组件类型查询实体将会变得非常高效，例如，如果你想要找到所有拥有组件A和组件B的实体，你可以找到所有含有这些组件的原型，这比遍历所有单独的实体要快得多，&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Unity DOTS Entities包文档翻译及学习笔记（一）概述</title>
         <link>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/</link>
         <pubDate>Thu, 06 Mar 2025 20:42:31 +0800</pubDate>
         
         <guid>https://wtlllll190812.github.io/p/unity-dots-entities%E5%8C%85%E6%96%87%E6%A1%A3%E7%BF%BB%E8%AF%91%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80%E6%A6%82%E8%BF%B0/</guid>
-        <description>&lt;img src="https://wtlllll190812.github.io/img/DOTS.png" alt="Featured image of post Unity DOTS Entities包文档翻译及学习笔记（一）概述" /&gt;&lt;h1 id=&#34;概述&#34;&gt;概述
-&lt;/h1&gt;&lt;p&gt;Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现
+        <description>&lt;img src="https://wtlllll190812.github.io/img/DOTS.png" alt="Featured image of post Unity DOTS Entities包文档翻译及学习笔记（一）概述" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述
+&lt;/h2&gt;&lt;p&gt;Entities包是 Unity DOTS（数据驱动技术栈）的一部分，提供了数据驱动的ECS架构实现
 以下是unity提供的学习资料
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/Unity-Technologies/EntityComponentSystemSamples&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;DOTS Guide and Samples&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id=&#34;安装&#34;&gt;安装
-&lt;/h1&gt;&lt;p&gt;要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本
+&lt;h2 id=&#34;安装&#34;&gt;安装
+&lt;/h2&gt;&lt;p&gt;要安装最新版本的 Entities 包，你的Unity版本需要在2022.3及以上版本
 打开包管理窗口，这里可以使用两种方式安装：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;使用名称安装（com.unity.entities）&lt;/li&gt;
 &lt;li&gt;使用git链接&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h1 id=&#34;ecs-工作流&#34;&gt;ECS 工作流
-&lt;/h1&gt;&lt;p&gt;使用面对数据的ECS工作流开发游戏的方式与之前面向对象的开发方式十分不同，无论是开发原则，还是功能的实现方式上。所以在真正开始ECS开发之前，有必要理解一下ECS工作流。&lt;/p&gt;
-&lt;h2 id=&#34;创建子场景subscene&#34;&gt;创建子场景（subscene）
-&lt;/h2&gt;&lt;p&gt;ECS使用subscene来容纳游戏的内容，你可以将GameObject和MonoBehaviour组件添加到子场景，然后烘焙器（baker）会将你的 GameObject 对象的 Monobehaviour 对象转换为实体和 ECS 组件。&lt;/p&gt;
-&lt;h2 id=&#34;创建ecs组件component&#34;&gt;创建ECS组件（component）
-&lt;/h2&gt;&lt;p&gt;组件存储了引用的数据，而系统则通过按照逻辑读写ECS组件数据来执行游戏行为。ECS工作流是面向数据的，所以最好是在开始创建实体以及系统的逻辑之前就开始规划你的数据，并为之创造ECS组件。Entiites提供了多种组件类型来满足不同目标，这些会在下文中提到。&lt;/p&gt;
-&lt;h2 id=&#34;创建实体entity&#34;&gt;创建实体（entity）
-&lt;/h2&gt;&lt;p&gt;实体代表了游戏中存在的不同事物，要在编辑器中创建实体，你添加一个GameObject到子场景，它会被烘焙程序转换成实体。&lt;/p&gt;
+&lt;h2 id=&#34;ecs-工作流&#34;&gt;ECS 工作流
+&lt;/h2&gt;&lt;p&gt;使用面对数据的ECS工作流开发游戏的方式与之前面向对象的开发方式十分不同，无论是开发原则，还是功能的实现方式上。所以在真正开始ECS开发之前，有必要理解一下ECS工作流。&lt;/p&gt;
+&lt;h3 id=&#34;创建子场景subscene&#34;&gt;创建子场景（subscene）
+&lt;/h3&gt;&lt;p&gt;ECS使用subscene来容纳游戏的内容，你可以将GameObject和MonoBehaviour组件添加到子场景，然后烘焙器（baker）会将你的 GameObject 对象的 Monobehaviour 对象转换为实体和 ECS 组件。&lt;/p&gt;
+&lt;h3 id=&#34;创建ecs组件component&#34;&gt;创建ECS组件（component）
+&lt;/h3&gt;&lt;p&gt;组件存储了引用的数据，而系统则通过按照逻辑读写ECS组件数据来执行游戏行为。ECS工作流是面向数据的，所以最好是在开始创建实体以及系统的逻辑之前就开始规划你的数据，并为之创造ECS组件。Entiites提供了多种组件类型来满足不同目标，这些会在下文中提到。&lt;/p&gt;
+&lt;h3 id=&#34;创建实体entity&#34;&gt;创建实体（entity）
+&lt;/h3&gt;&lt;p&gt;实体代表了游戏中存在的不同事物，要在编辑器中创建实体，你添加一个GameObject到子场景，它会被烘焙程序转换成实体。&lt;/p&gt;
 &lt;p&gt;或者，你也可以创建baker将ECS组件附加到实体上，当你创建baker时，你需要为其指定一个MonoBehaviour组件，然后根据MonoBehaviour组件的数据创建ECS组件并附加到Entities上。&lt;/p&gt;
 &lt;p&gt;这个工作流被称为“authoring”组件&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;注意，当脚本用作authoring时，建议在类名的后方加上“Authoring”&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;当然，你也可以在运行时创建实体，这在后文中会讲到&lt;/p&gt;
-&lt;h2 id=&#34;创建系统system&#34;&gt;创建系统（system）
-&lt;/h2&gt;&lt;p&gt;为此系统可以查询以及转换ECS组件数据，创建和销毁实体，或者添加以及移除附加在实体上的组件，它定义了游戏的行为
+&lt;h3 id=&#34;创建系统system&#34;&gt;创建系统（system）
+&lt;/h3&gt;&lt;p&gt;为此系统可以查询以及转换ECS组件数据，创建和销毁实体，或者添加以及移除附加在实体上的组件，它定义了游戏的行为
 默认情况下，当你创建系统时，Unity会将其初始化并添加到默认的World中。
 对于不同的目标，unity提供了不同种类的系统，在下文中会提到。&lt;/p&gt;
-&lt;h2 id=&#34;优化系统&#34;&gt;优化系统
-&lt;/h2&gt;&lt;p&gt;默认情况下，你在system中编写的代码会同步运行在主线程中，如果系统涉及到大量实体的数据同时可以在多线程下受益，那么最好创建Burst兼容的job，然后在并行执行job，Burst会将你的c#代码编译成高性能的原生Cpu代码，而job使你可以将任务分发到多线程，从多处理器中受益。&lt;/p&gt;
+&lt;h3 id=&#34;优化系统&#34;&gt;优化系统
+&lt;/h3&gt;&lt;p&gt;默认情况下，你在system中编写的代码会同步运行在主线程中，如果系统涉及到大量实体的数据同时可以在多线程下受益，那么最好创建Burst兼容的job，然后在并行执行job，Burst会将你的c#代码编译成高性能的原生Cpu代码，而job使你可以将任务分发到多线程，从多处理器中受益。&lt;/p&gt;
 &lt;p&gt;如果一个system并不执行太多工作，比如仅仅处理少量实体的数据，那么并行任务带来的开销将会超过从多线程中获得的收益，要确认你的job是不是这种情况，可以使用cpu profiler来测试多线程以及单线程下unity花了多长时间在你的job上。
 如果并行的开销让unity花费了更长的时间，尝试以下选项来优化job:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;在主线程上运行job&lt;/li&gt;
 &lt;li&gt;如果系统是非托管的 ISystem 请使用SystemApi.Query和普通的foreach。你可以在使用了查询的方法上使用BurstCompile属性来让burst优化性能&lt;/li&gt;
 &lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;文章翻译自Unity entities包官方文档，但我去掉了一些非关键内容，将语言改为了更加符合汉语表达习惯的形式，同时在某些地方加入了一些个人理解，相信会比原文档更加易于理解，如有模糊之处，可对照文档原文加以理解。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;!-- ECS架构即实体组件架构 --&gt;
 &lt;!-- # Entities 1.0之后的新功能
 (仅为学习Entities包可以跳过这部分内容，可能涉及到一些陌生的名词，但后文会讲到)
